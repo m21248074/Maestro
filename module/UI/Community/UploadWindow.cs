@@ -73,7 +73,7 @@ namespace Maestro.UI.Community
             _allSongs = songs;
             _uploadableSongs = FilterUploadableSongs();
 
-            Title = "Upload to Community";
+            Title = "上傳至社群";
             Emblem = Module.Instance.ContentsManager.GetTexture("upload-emblem.png");
             SavesPosition = true;
             Id = "UploadWindow_v1";
@@ -89,7 +89,7 @@ namespace Maestro.UI.Community
             var currentY = MaestroTheme.PaddingContentTop;
 
             // Song selector
-            CreateLabel("Select Song:", 0, currentY);
+            CreateLabel("選擇歌曲:", 0, currentY);
             _songSelector = new CustomDropdown
             {
                 Parent = this,
@@ -99,14 +99,14 @@ namespace Maestro.UI.Community
 
             if (_uploadableSongs.Count == 0)
             {
-                _songSelector.AddItem("No songs available");
+                _songSelector.AddItem("沒有可用的歌曲");
                 _songSelector.Enabled = false;
             }
             else
             {
                 foreach (var song in _uploadableSongs)
                 {
-                    var fullText = $"{song.Name} - {song.Transcriber ?? "Unknown"}";
+                    var fullText = $"{song.Name} - {song.Transcriber ?? "未知"}";
                     _songSelector.AddItem(fullText, fullText, song);
                 }
             }
@@ -124,16 +124,16 @@ namespace Maestro.UI.Community
             };
 
             var detailY = 8;
-            _nameLabel = CreateDetailRow(detailsPanel, "Name:", ref detailY);
-            _artistLabel = CreateDetailRow(detailsPanel, "Artist:", ref detailY);
-            _transcriberLabel = CreateDetailRow(detailsPanel, "Transcriber:", ref detailY);
-            _instrumentLabel = CreateDetailRow(detailsPanel, "Instrument:", ref detailY);
-            _noteCountLabel = CreateDetailRow(detailsPanel, "Notes:", ref detailY);
+            _nameLabel = CreateDetailRow(detailsPanel, "標題:", ref detailY);
+            _artistLabel = CreateDetailRow(detailsPanel, "音樂家:", ref detailY);
+            _transcriberLabel = CreateDetailRow(detailsPanel, "編曲者:", ref detailY);
+            _instrumentLabel = CreateDetailRow(detailsPanel, "樂器:", ref detailY);
+            _noteCountLabel = CreateDetailRow(detailsPanel, "音符數:", ref detailY);
 
             currentY += 95 + MaestroTheme.InputSpacing;
 
             // Validation panel
-            CreateLabel("Validation:", 0, currentY);
+            CreateLabel("驗證:", 0, currentY);
             currentY += Layout.RowHeight;
 
             _validationPanel = new Panel
@@ -146,13 +146,13 @@ namespace Maestro.UI.Community
             };
 
             var valY = 5;
-            _nameValidation = CreateValidationRow(_validationPanel, "Name (min 3 chars)", ref valY);
-            _transcriberValidation = CreateValidationRow(_validationPanel, "Transcriber (min 2 chars)", ref valY);
-            _instrumentValidation = CreateValidationRow(_validationPanel, "Instrument selected", ref valY);
-            _notesValidation = CreateValidationRow(_validationPanel, "At least 10 notes", ref valY);
-            _durationValidation = CreateValidationRow(_validationPanel, "Duration (min 15s)", ref valY);
-            _duplicateValidation = CreateValidationRow(_validationPanel, "Not a duplicate", ref valY);
-            _rateLimitValidation = CreateValidationRow(_validationPanel, "Upload limit OK", ref valY);
+            _nameValidation = CreateValidationRow(_validationPanel, "標題 (最少 3 個字元)", ref valY);
+            _transcriberValidation = CreateValidationRow(_validationPanel, "編曲者 (最少 2 個字元)", ref valY);
+            _instrumentValidation = CreateValidationRow(_validationPanel, "已選樂器", ref valY);
+            _notesValidation = CreateValidationRow(_validationPanel, "至少 10 個音符", ref valY);
+            _durationValidation = CreateValidationRow(_validationPanel, "長度 (最少 15 秒)", ref valY);
+            _duplicateValidation = CreateValidationRow(_validationPanel, "不為重複歌曲", ref valY);
+            _rateLimitValidation = CreateValidationRow(_validationPanel, "上傳限制正常", ref valY);
 
             currentY += 110 + MaestroTheme.InputSpacing;
 
@@ -162,7 +162,7 @@ namespace Maestro.UI.Community
                 Parent = this,
                 Location = new Point(0, currentY),
                 Width = Layout.ContentWidth,
-                Text = $"Uploads remaining today: {_uploadService.GetRemainingUploads()}/3",
+                Text = $"今日剩餘上傳次數: {_uploadService.GetRemainingUploads()}/3",
                 TextColor = MaestroTheme.MutedCream
             };
             currentY += Layout.RowHeight + MaestroTheme.InputSpacing;
@@ -176,7 +176,7 @@ namespace Maestro.UI.Community
                 Height = 80,
                 WrapText = true,
                 Font = GameService.Content.DefaultFont12,
-                Text = "Only songs you imported or created can be uploaded. Please tag them properly and credit the original creator, otherwise the upload will be rejected. Uploads are also reviewed manually, so bear with me while I get to yours. Thank you for every submission, I truly appreciate it!",
+                Text = "僅限上傳由您本人匯入或創作的歌曲。請務必正確標記並註明原作者\n，否則上傳將遭到拒絕。此外，所有上傳內容皆需經由人工審核，\n處理過程中還請您耐心等候。感謝您的每一次貢獻，我真心感謝您\n的支持!",
                 TextColor = MaestroTheme.MutedCream
             };
             currentY += 80 + MaestroTheme.InputSpacing;
@@ -213,7 +213,7 @@ namespace Maestro.UI.Community
             _uploadButton = new StandardButton
             {
                 Parent = this,
-                Text = "Upload",
+                Text = "上傳",
                 Location = new Point(Layout.ContentWidth - MaestroTheme.ActionButtonWidth * 2 - 10, currentY),
                 Size = new Point(MaestroTheme.ActionButtonWidth, MaestroTheme.ActionButtonHeight),
                 Enabled = false
@@ -223,7 +223,7 @@ namespace Maestro.UI.Community
             _cancelButton = new StandardButton
             {
                 Parent = this,
-                Text = "Cancel",
+                Text = "取消",
                 Location = new Point(Layout.ContentWidth - MaestroTheme.ActionButtonWidth, currentY),
                 Size = new Point(MaestroTheme.ActionButtonWidth, MaestroTheme.ActionButtonHeight)
             };
@@ -327,7 +327,7 @@ namespace Maestro.UI.Community
 
         private void UpdateValidation()
         {
-            _remainingUploadsLabel.Text = $"Uploads remaining today: {_uploadService.GetRemainingUploads()}/3";
+            _remainingUploadsLabel.Text = $"今日剩餘上傳次數: {_uploadService.GetRemainingUploads()}/3";
 
             if (_selectedSong == null)
             {
@@ -337,13 +337,13 @@ namespace Maestro.UI.Community
 
             var validation = _uploadService.ValidateSong(_selectedSong);
 
-            UpdateValidationLabel(_nameValidation, "Name (min 3 chars)", validation.NameValid, validation.NameError);
-            UpdateValidationLabel(_transcriberValidation, "Transcriber (min 2 chars)", validation.TranscriberValid, validation.TranscriberError);
-            UpdateValidationLabel(_instrumentValidation, "Instrument selected", validation.InstrumentValid, validation.InstrumentError);
-            UpdateValidationLabel(_notesValidation, "At least 10 notes", validation.NotesValid, validation.NotesError);
-            UpdateValidationLabel(_durationValidation, "Duration (min 15s)", validation.DurationValid, validation.DurationError);
-            UpdateValidationLabel(_duplicateValidation, "Not a duplicate", !validation.IsDuplicate, validation.DuplicateError);
-            UpdateValidationLabel(_rateLimitValidation, "Upload limit OK", !validation.RateLimitExceeded, validation.RateLimitError);
+            UpdateValidationLabel(_nameValidation, "標題 (最少 3 個字元)", validation.NameValid, validation.NameError);
+            UpdateValidationLabel(_transcriberValidation, "編曲者 (最少 2 個字元)", validation.TranscriberValid, validation.TranscriberError);
+            UpdateValidationLabel(_instrumentValidation, "已選樂器", validation.InstrumentValid, validation.InstrumentError);
+            UpdateValidationLabel(_notesValidation, "至少 10 個音符", validation.NotesValid, validation.NotesError);
+            UpdateValidationLabel(_durationValidation, "長度 (最少 15 秒)", validation.DurationValid, validation.DurationError);
+            UpdateValidationLabel(_duplicateValidation, "不為重複歌曲", !validation.IsDuplicate, validation.DuplicateError);
+            UpdateValidationLabel(_rateLimitValidation, "上傳限制正常", !validation.RateLimitExceeded, validation.RateLimitError);
 
             _uploadButton.Enabled = validation.IsValid && !_isUploading;
         }
@@ -472,7 +472,7 @@ namespace Maestro.UI.Community
 
             if (_uploadableSongs.Count == 0)
             {
-                _songSelector.AddItem("No songs available");
+                _songSelector.AddItem("沒有可用的歌曲");
                 _songSelector.Enabled = false;
                 _selectedSong = null;
             }
@@ -480,7 +480,7 @@ namespace Maestro.UI.Community
             {
                 foreach (var song in _uploadableSongs)
                 {
-                    var fullText = $"{song.Name} - {song.Transcriber ?? "Unknown"}";
+                    var fullText = $"{song.Name} - {song.Transcriber ?? "未知"}";
                     _songSelector.AddItem(fullText, fullText, song);
                 }
                 _songSelector.Enabled = true;

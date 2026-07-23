@@ -180,8 +180,8 @@ namespace Maestro.UI.Main
                 Height = Layout.PracticeButtonHeight,
                 Enabled = song.IsPracticeSupported,
                 BasicTooltipText = song.IsPracticeSupported
-                    ? "Practice this song (Guitar Hero-style)"
-                    : "Practice mode supports melodic songs in the modern note format. Drum Set songs and legacy imports can't be practiced."
+                    ? "練習這首歌 (Guitar Hero 風格)"
+                    : "練習模式支援採用現代音符格式的旋律歌曲。爵士鼓曲目與舊版匯入檔無法進行練習。"
             };
             _practiceButton.Click += (s, e) =>
             {
@@ -194,7 +194,7 @@ namespace Maestro.UI.Main
             _playButton = new IconButton(MaestroIcons.Play, MaestroTheme.IconGlyph)
             {
                 Parent = this,
-                BasicTooltipText = "Play",
+                BasicTooltipText = "播放",
                 Location = new Point(width - Layout.PlayButtonWidth - Layout.PlayButtonRightMargin, Layout.PlayButtonY),
                 Width = Layout.PlayButtonWidth
             };
@@ -203,27 +203,27 @@ namespace Maestro.UI.Main
             // Context menu for all songs
             var contextMenu = new ContextMenuStrip();
 
-            var addToQueueItem = contextMenu.AddMenuItem("Add to Queue");
+            var addToQueueItem = contextMenu.AddMenuItem("加入播放佇列");
             addToQueueItem.Click += (s, e) => AddToQueueRequested?.Invoke(this, EventArgs.Empty);
 
-            var favoriteItem = contextMenu.AddMenuItem("Toggle Favorite");
+            var favoriteItem = contextMenu.AddMenuItem("加入/移除收藏");
             favoriteItem.Click += (s, e) => FavoriteToggleRequested?.Invoke(this, EventArgs.Empty);
 
             if (song.IsUserImported || song.IsCreated)
             {
-                var editItem = contextMenu.AddMenuItem("Edit Song");
+                var editItem = contextMenu.AddMenuItem("編輯歌曲");
                 editItem.Click += (s, e) => EditRequested?.Invoke(this, EventArgs.Empty);
             }
 
             if (song.IsUserImported || song.IsCreated || song.IsCommunityDownloaded)
             {
-                var deleteItem = contextMenu.AddMenuItem("Delete Song");
+                var deleteItem = contextMenu.AddMenuItem("刪除歌曲");
                 deleteItem.Click += (s, e) => DeleteRequested?.Invoke(this, EventArgs.Empty);
             }
 
             Menu = contextMenu;
 
-            const string tooltip = "Right-click for options";
+            const string tooltip = "按右鍵以顯示選項";
             BasicTooltipText = tooltip;
             _indicator.BasicTooltipText = tooltip;
             _instrumentLabel.BasicTooltipText = tooltip;

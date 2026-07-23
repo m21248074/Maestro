@@ -56,8 +56,8 @@ namespace Maestro.UI.Import
                 new Rectangle(0, 0, Layout.WindowWidth, Layout.WindowHeight),
                 new Rectangle(15, MaestroTheme.WindowContentTopPadding, Layout.ContentWidth, Layout.WindowHeight))
         {
-            Title = "Import Song";
-            Subtitle = "AHK or Maestro";
+            Title = "匯入歌曲";
+            Subtitle = "AHK 或 Maestro";
             Emblem = Module.Instance.ContentsManager.GetTexture("import-emblem.png");
             SavesPosition = true;
             Id = "ImportWindow_v1";
@@ -70,7 +70,7 @@ namespace Maestro.UI.Import
             _pasteButton = new StandardButton
             {
                 Parent = this,
-                Text = "Paste Song",
+                Text = "貼上歌曲",
                 Location = new Point(0, currentY),
                 Size = new Point(Layout.ContentWidth, Layout.PasteBarHeight)
             };
@@ -86,26 +86,26 @@ namespace Maestro.UI.Import
                 Height = Layout.ChipHeight,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 Font = GameService.Content.DefaultFont12,
-                Text = "Paste an AHK script or Maestro song",
+                Text = "貼上 AHK 腳本或 Maestro 歌曲",
                 TextColor = MaestroTheme.HintTextColor
             };
             currentY += Layout.ChipHeight + MaestroTheme.InputSpacing;
 
             // Step 2: song details
-            CreateLabel("Title:", 0, currentY);
-            _titleInput = CreateTextBox(currentY, "Song title");
+            CreateLabel("標題:", 0, currentY);
+            _titleInput = CreateTextBox(currentY, "歌曲名稱");
             _titleInput.TextChanged += (s, e) => UpdateImportEnabled();
             currentY += Layout.RowHeight + MaestroTheme.InputSpacing;
 
-            CreateLabel("Artist:", 0, currentY);
-            _artistInput = CreateTextBox(currentY, "Artist name");
+            CreateLabel("音樂家:", 0, currentY);
+            _artistInput = CreateTextBox(currentY, "音樂家名稱");
             currentY += Layout.RowHeight + MaestroTheme.InputSpacing;
 
-            CreateLabel("Transcriber:", 0, currentY);
-            _transcriberInput = CreateTextBox(currentY, "Transcriber name");
+            CreateLabel("編曲者:", 0, currentY);
+            _transcriberInput = CreateTextBox(currentY, "編曲者名稱");
             currentY += Layout.RowHeight + MaestroTheme.InputSpacing;
 
-            CreateLabel("Instrument:", 0, currentY);
+            CreateLabel("樂器:", 0, currentY);
             _instrumentDropdown = new Dropdown
             {
                 Parent = this,
@@ -116,7 +116,7 @@ namespace Maestro.UI.Import
             {
                 _instrumentDropdown.Items.Add(info.DisplayName);
             }
-            _instrumentDropdown.SelectedItem = "Harp";
+            _instrumentDropdown.SelectedItem = "豎琴";
             currentY += Layout.RowHeight + MaestroTheme.InputSpacing * 2;
 
             // Footer: primary Import + Cancel
@@ -126,7 +126,7 @@ namespace Maestro.UI.Import
             _importButton = new StandardButton
             {
                 Parent = this,
-                Text = "Import",
+                Text = "匯入",
                 Location = new Point(importX, currentY),
                 Size = new Point(Layout.FooterButtonWidth, MaestroTheme.ActionButtonHeight),
                 Enabled = false
@@ -136,7 +136,7 @@ namespace Maestro.UI.Import
             _cancelButton = new StandardButton
             {
                 Parent = this,
-                Text = "Cancel",
+                Text = "取消",
                 Location = new Point(cancelX, currentY),
                 Size = new Point(Layout.FooterButtonWidth, MaestroTheme.ActionButtonHeight)
             };
@@ -146,12 +146,12 @@ namespace Maestro.UI.Import
             _formatLink = new Label
             {
                 Parent = this,
-                Text = "Maestro format guide",
+                Text = "Maestro 格式指南",
                 Location = new Point(0, currentY + 6),
                 AutoSizeWidth = true,
                 Font = GameService.Content.DefaultFont12,
                 TextColor = MaestroTheme.AmberGold,
-                BasicTooltipText = "Open the Maestro song format guide in your browser"
+                BasicTooltipText = "在瀏覽器中開啟 Maestro 歌曲格式指南"
             };
             _formatLink.Click += OnFormatLinkClicked;
         }
@@ -393,11 +393,11 @@ namespace Maestro.UI.Import
             _titleInput.Text = string.Empty;
             _artistInput.Text = string.Empty;
             _transcriberInput.Text = string.Empty;
-            _instrumentDropdown.SelectedItem = "Harp";
+            _instrumentDropdown.SelectedItem = "豎琴";
             _parsedNotes = null;
             _skipOctaveReset = false;
-            Subtitle = "AHK or Maestro";
-            SetStatus("Paste an AHK script or Maestro song", MaestroTheme.HintTextColor);
+            Subtitle = "AHK 或 Maestro";
+            SetStatus("貼上 AHK 腳本或 Maestro 歌曲", MaestroTheme.HintTextColor);
             UpdateImportEnabled();
         }
 

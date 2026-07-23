@@ -56,7 +56,7 @@ namespace Maestro.UI.Practice
             _pauseButton = new IconButton(MaestroIcons.Pause, MaestroTheme.IconGlyph)
             {
                 Parent = this,
-                BasicTooltipText = "Pause",
+                BasicTooltipText = "暫停",
                 Location = new Point(96, 8),
                 Width = 40,
                 Height = 22,
@@ -66,7 +66,7 @@ namespace Maestro.UI.Practice
             _restartButton = new IconButton(MaestroIcons.Refresh, MaestroTheme.IconGlyph)
             {
                 Parent = this,
-                BasicTooltipText = "Restart",
+                BasicTooltipText = "重新開始",
                 Location = new Point(140, 8),
                 Width = 40,
                 Height = 22,
@@ -76,7 +76,7 @@ namespace Maestro.UI.Practice
             _closeButton = new IconButton(MaestroIcons.Cancel, MaestroTheme.IconGlyph)
             {
                 Parent = this,
-                BasicTooltipText = "Close practice",
+                BasicTooltipText = "關閉練習",
                 Location = new Point(184, 8),
                 Width = 40,
                 Height = 22,
@@ -88,7 +88,7 @@ namespace Maestro.UI.Practice
                 Parent = this,
                 Location = new Point(8, 38),
                 Width = 200,
-                Text = "SCORE 0",
+                Text = "分數 0",
             };
 
             _comboLabel = new Label
@@ -96,7 +96,7 @@ namespace Maestro.UI.Practice
                 Parent = this,
                 Location = new Point(220, 38),
                 Width = 120,
-                Text = "COMBO x0",
+                Text = "連擊 x0",
             };
         }
 
@@ -108,12 +108,12 @@ namespace Maestro.UI.Practice
         public void RefreshStats()
         {
             int score = _session.PerfectCount * 100 + _session.GoodCount * 50;
-            _scoreLabel.Text = $"SCORE {score}";
-            _comboLabel.Text = $"COMBO x{_session.Combo}";
+            _scoreLabel.Text = $"分數 {score}";
+            _comboLabel.Text = $"連擊 x{_session.Combo}";
 
             var paused = _session.Clock.IsPaused;
             _pauseButton.IconTexture = paused ? MaestroIcons.Play : MaestroIcons.Pause;
-            _pauseButton.BasicTooltipText = paused ? "Resume" : "Pause";
+            _pauseButton.BasicTooltipText = paused ? "恢復" : "暫停";
         }
 
         private static string SpeedLabel(float s)

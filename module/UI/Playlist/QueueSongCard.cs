@@ -86,9 +86,9 @@ namespace Maestro.UI.Playlist
             if (_isDragging || IsGhost)
                 BasicTooltipText = null;
             else if (_isHoveringDragHandle)
-                BasicTooltipText = "Drag to reorder";
+                BasicTooltipText = "拖曳以調整順序";
             else if (_isHoveringRemove)
-                BasicTooltipText = "Remove from queue";
+                BasicTooltipText = "從佇列移除";
             else
                 BasicTooltipText = null;
 

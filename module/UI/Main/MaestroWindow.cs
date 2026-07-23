@@ -60,7 +60,7 @@ namespace Maestro.UI.Main
             _favoriteService = favoriteService;
 
             Title = "Maestro";
-            Subtitle = "Music player";
+            Subtitle = "音樂播放器";
             Emblem = Module.Instance.ContentsManager.GetTexture("maestro-emblem.png");
             SavesPosition = true;
             Id = "MaestroWindow_v4";
@@ -561,9 +561,9 @@ namespace Maestro.UI.Main
             var sort = _filterBar.SelectedSort;
             switch (sort)
             {
-                case "Name Z-A":
+                case "名稱 Z-A":
                     return songs.OrderByDescending(s => s.Name);
-                case "Name A-Z":
+                case "名稱 A-Z":
                 default:
                     return songs.OrderBy(s => s.Name);
             }
@@ -574,15 +574,15 @@ namespace Maestro.UI.Main
             var source = _filterBar.SelectedSource;
             switch (source)
             {
-                case "Favorites":
+                case "收藏":
                     return songs.Where(s => _favoriteService.IsFavorite(s));
-                case "Bundled":
+                case "內建":
                     return songs.Where(s => !s.IsUserImported && !s.IsCreated && !s.IsCommunityDownloaded);
-                case "Community":
+                case "社群":
                     return songs.Where(s => s.IsCommunityDownloaded);
-                case "Created":
+                case "自建":
                     return songs.Where(s => s.IsCreated);
-                case "Imported":
+                case "已匯入":
                     return songs.Where(s => s.IsUserImported);
                 case "Submittals":
                     return songs.Where(s => s.IsSubmittal);
@@ -594,7 +594,7 @@ namespace Maestro.UI.Main
         private IEnumerable<Song> FilterByInstrument(IEnumerable<Song> songs)
         {
             var filter = _filterBar.SelectedInstrument;
-            if (filter == "All") return songs;
+            if (filter == "全部") return songs;
 
             if (InstrumentCatalog.TryFromDisplayName(filter, out var instrument))
             {

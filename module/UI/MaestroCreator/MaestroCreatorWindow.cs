@@ -168,7 +168,7 @@ namespace Maestro.UI.MaestroCreator
 
             // Show confirmation overlay and wait for user to confirm instrument is equipped
             _isWaitingForConfirmation = true;
-            _confirmationLabel.Text = $"Equip your {ShortInstrumentName(_instrument)} and click Ready";
+            _confirmationLabel.Text = $"裝備您的 {ShortInstrumentName(_instrument)} 並點擊準備";
             _confirmationOverlay.Visible = true;
             if (!IsPercussion)
                 _pianoKeyboard.SetOctaveButtonsEnabled(false);
@@ -242,7 +242,7 @@ namespace Maestro.UI.MaestroCreator
                 new Rectangle(0, 0, Layout.WindowWidth, Layout.WindowHeight),
                 new Rectangle(Layout.ContentLeftInset, MaestroTheme.WindowContentTopPadding, Layout.ContentWidth, Layout.ContentHeight))
         {
-            Title = "Maestro Creator";
+            Title = "Maestro 創作工具";
             Emblem = Module.Instance.ContentsManager.GetTexture("creator-emblem.png");
             SavesPosition = true;
             Id = "MaestroCreatorWindow_v2";
@@ -252,33 +252,33 @@ namespace Maestro.UI.MaestroCreator
             var currentY = MaestroTheme.PaddingContentTop;
 
             // --- Title (full-width row) ---
-            CreateLabel("Title:", 0, currentY);
+            CreateLabel("標題:", 0, currentY);
             _titleInput = new TextBox
             {
                 Parent = this,
                 Location = new Point(Layout.TitleInputX, currentY),
                 Width = Layout.TitleInputWidth,
-                PlaceholderText = "Song title"
+                PlaceholderText = "歌曲名稱"
             };
             currentY += Layout.RowHeight + MaestroTheme.InputSpacing;
 
             // --- Artist + By (split row) ---
-            CreateLabel("Artist:", 0, currentY);
+            CreateLabel("音樂家:", 0, currentY);
             _artistInput = new TextBox
             {
                 Parent = this,
                 Location = new Point(Layout.ArtistInputX, currentY),
                 Width = Layout.ArtistInputWidth,
-                PlaceholderText = "Artist"
+                PlaceholderText = "音樂家"
             };
 
-            CreateLabel("By:", Layout.ByLabelX, currentY);
+            CreateLabel("作者:", Layout.ByLabelX, currentY);
             _transcriberInput = new TextBox
             {
                 Parent = this,
                 Location = new Point(Layout.ByInputX, currentY),
                 Width = Layout.ByInputWidth,
-                PlaceholderText = "Your name"
+                PlaceholderText = "您的名稱"
             };
             currentY += Layout.RowHeight + MaestroTheme.InputSpacing * 2;
 
@@ -316,10 +316,10 @@ namespace Maestro.UI.MaestroCreator
             _chordModeButton = new StandardButton
             {
                 Parent = this,
-                Text = "Chord",
+                Text = "和弦",
                 Location = new Point(0, currentY),
                 Size = new Point(65, Layout.ChordBarHeight - 4),
-                BasicTooltipText = "Toggle chord mode to add multiple notes at once"
+                BasicTooltipText = "切換至和弦模式以一次新增多個音符"
             };
             _chordModeButton.Click += OnChordModeToggle;
 
@@ -337,11 +337,11 @@ namespace Maestro.UI.MaestroCreator
             _addChordButton = new StandardButton
             {
                 Parent = this,
-                Text = "Add Chord",
+                Text = "新增和弦",
                 Location = new Point(Layout.ContentWidth - 80, currentY),
                 Size = new Point(80, Layout.ChordBarHeight - 4),
                 Enabled = false,
-                BasicTooltipText = "Add the current chord to the sequence"
+                BasicTooltipText = "將目前和弦新增至序列"
             };
             _addChordButton.Click += OnAddChordClicked;
             currentY += Layout.ChordBarHeight + MaestroTheme.InputSpacing * 2;
@@ -353,7 +353,7 @@ namespace Maestro.UI.MaestroCreator
             _saveButton = new StandardButton
             {
                 Parent = this,
-                Text = "Save",
+                Text = "儲存",
                 Location = new Point(buttonsStartX, currentY),
                 Size = new Point(Layout.ActionButtonWidth, Layout.ActionButtonHeight)
             };
@@ -362,7 +362,7 @@ namespace Maestro.UI.MaestroCreator
             _cancelButton = new StandardButton
             {
                 Parent = this,
-                Text = "Cancel",
+                Text = "取消",
                 Location = new Point(buttonsStartX + Layout.ActionButtonWidth + Layout.ActionButtonSpacing, currentY),
                 Size = new Point(Layout.ActionButtonWidth, Layout.ActionButtonHeight)
             };
@@ -407,7 +407,7 @@ namespace Maestro.UI.MaestroCreator
             _readyButton = new StandardButton
             {
                 Parent = _confirmationOverlay,
-                Text = "Ready",
+                Text = "準備",
                 Location = new Point((Layout.ContentWidth - 100) / 2, PianoKeyboard.Layout.TotalHeight / 2 + 5),
                 Size = new Point(100, 30)
             };
@@ -483,7 +483,7 @@ namespace Maestro.UI.MaestroCreator
         {
             if (_pendingChordNotes.Count == 0)
             {
-                _chordPreviewLabel.Text = _isChordMode ? "Click keys to build chord..." : "";
+                _chordPreviewLabel.Text = _isChordMode ? "點擊按鍵以建立和弦..." : "";
                 _chordPreviewLabel.BasicTooltipText = null;
                 _addChordButton.Enabled = false;
                 return;
@@ -491,8 +491,8 @@ namespace Maestro.UI.MaestroCreator
 
             var chordText = string.Join(" ", _pendingChordNotes);
             var displayText = showFullMessage
-                ? $"Chord full ({Layout.MaxChordNotes}/{Layout.MaxChordNotes})"
-                : $"Chord ({_pendingChordNotes.Count}/{Layout.MaxChordNotes}): {chordText}";
+                ? $"和弦已滿 ({Layout.MaxChordNotes}/{Layout.MaxChordNotes})"
+                : $"和弦 ({_pendingChordNotes.Count}/{Layout.MaxChordNotes}): {chordText}";
 
             if (displayText.Length > Layout.ChordPreviewMaxLength)
             {
@@ -640,7 +640,7 @@ namespace Maestro.UI.MaestroCreator
 
             if (_noteSequencePanel.NoteCount == 0)
             {
-                ScreenNotification.ShowNotification("Add some notes first!", ScreenNotification.NotificationType.Warning);
+                ScreenNotification.ShowNotification("請先新增一些音符!", ScreenNotification.NotificationType.Warning);
                 return;
             }
 
@@ -649,8 +649,8 @@ namespace Maestro.UI.MaestroCreator
 
             var song = new Song
             {
-                Name = "Preview",
-                Artist = "Preview",
+                Name = "預覽",
+                Artist = "預覽",
                 Instrument = _instrument,
                 IsCreated = true
             };
@@ -674,8 +674,8 @@ namespace Maestro.UI.MaestroCreator
 
                 var song = new Song
                 {
-                    Name = "Preview",
-                    Artist = "Preview",
+                    Name = "預覽",
+                    Artist = "預覽",
                     Instrument = _instrument,
                     IsCreated = true
                 };
@@ -746,7 +746,7 @@ namespace Maestro.UI.MaestroCreator
 
             var song = BuildSong(
                 _titleInput.Text.Trim(),
-                string.IsNullOrWhiteSpace(_artistInput.Text) ? "Unknown" : _artistInput.Text.Trim(),
+                string.IsNullOrWhiteSpace(_artistInput.Text) ? "未知" : _artistInput.Text.Trim(),
                 string.IsNullOrWhiteSpace(_transcriberInput.Text) ? "" : _transcriberInput.Text.Trim());
 
             if (song != null)

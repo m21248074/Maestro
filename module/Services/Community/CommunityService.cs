@@ -83,7 +83,7 @@ namespace Maestro.Services.Community
         {
             var songs = GetAvailableSongs();
 
-            if (!string.IsNullOrEmpty(instrumentFilter) && instrumentFilter != "All"
+            if (!string.IsNullOrEmpty(instrumentFilter) && instrumentFilter != "全部"
                 && InstrumentCatalog.TryFromDisplayName(instrumentFilter, out var instrumentType))
             {
                 songs = songs.Where(s => s.InstrumentType == instrumentType);

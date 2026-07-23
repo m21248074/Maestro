@@ -18,14 +18,14 @@ namespace Maestro.UI.Controls
             set
             {
                 _isFavorite = value;
-                BasicTooltipText = value ? "Remove from Favorites" : "Add to Favorites";
+                BasicTooltipText = value ? "取消收藏" : "加入收藏";
             }
         }
 
         public StarButton()
         {
             _size = new Point(CONTROL_SIZE, CONTROL_SIZE);
-            BasicTooltipText = "Add to Favorites";
+            BasicTooltipText = "加入收藏";
         }
 
         protected override void Paint(SpriteBatch spriteBatch, Rectangle bounds)

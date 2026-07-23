@@ -13,21 +13,21 @@ namespace Maestro.Models
             LastUsedSpeed = settings.DefineSetting(
                 "practice.lastUsedSpeed",
                 1.0f,
-                () => "Last used practice speed",
-                () => "Internal: remembers the last practice speed multiplier.");
+                () => "上次使用的練習速度",
+                () => "內部設定：記憶上次的練習速度倍率。");
 
             LookaheadSeconds = settings.DefineSetting(
                 "practice.lookaheadSeconds",
                 2.5f,
-                () => "Practice: lookahead (seconds)",
-                () => "How far ahead in the song the highway shows. Lower = faster scroll, shorter reaction time.");
+                () => "練習: 預覽時間 (秒)",
+                () => "設定音樂軌道顯示歌曲前方多少秒的內容。\n數值越低，捲動速度越快，反應時間越短。");
             LookaheadSeconds.SetRange(1.0f, 5.0f);
 
             CountdownLengthMs = settings.DefineSetting(
                 "practice.countdownLengthMs",
                 3000,
-                () => "Practice: countdown length (ms)",
-                () => "How long the 3-2-1 countdown lasts before a practice session starts.");
+                () => "練習: 倒數計時長度 (毫秒)",
+                () => "設定練習開始前 3-2-1 倒數計時的持續時間。");
             CountdownLengthMs.SetRange(1000, 6000);
         }
     }

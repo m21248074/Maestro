@@ -36,17 +36,17 @@ namespace Maestro.Models
             switch (noteType)
             {
                 case NoteType.Whole:
-                    return "Whole";
+                    return "全";
                 case NoteType.Half:
-                    return "Half";
+                    return "二分";
                 case NoteType.Quarter:
-                    return "Quarter";
+                    return "四分";
                 case NoteType.Eighth:
-                    return "Eighth";
+                    return "八分";
                 case NoteType.Sixteenth:
-                    return "16th";
+                    return "十六分";
                 default:
-                    return "Quarter";
+                    return "四分";
             }
         }
     }

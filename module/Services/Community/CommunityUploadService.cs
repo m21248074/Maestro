@@ -50,12 +50,12 @@ namespace Maestro.Services.Community
             if (string.IsNullOrWhiteSpace(song.Name))
             {
                 result.NameValid = false;
-                result.NameError = "Song name is required";
+                result.NameError = "歌名為必填欄位";
             }
             else if (song.Name.Trim().Length < MIN_NAME_LENGTH)
             {
                 result.NameValid = false;
-                result.NameError = $"Song name must be at least {MIN_NAME_LENGTH} characters";
+                result.NameError = $"歌名必須至少含有 {MIN_NAME_LENGTH} 個字元";
             }
             else
             {
@@ -66,12 +66,12 @@ namespace Maestro.Services.Community
             if (string.IsNullOrWhiteSpace(song.Transcriber))
             {
                 result.TranscriberValid = false;
-                result.TranscriberError = "Transcriber name is required";
+                result.TranscriberError = "編曲者名稱為必填欄位";
             }
             else if (song.Transcriber.Trim().Length < MIN_TRANSCRIBER_LENGTH)
             {
                 result.TranscriberValid = false;
-                result.TranscriberError = $"Transcriber must be at least {MIN_TRANSCRIBER_LENGTH} characters";
+                result.TranscriberError = $"編曲者名稱必須至少含有 {MIN_TRANSCRIBER_LENGTH} 個字元";
             }
             else
             {
@@ -82,7 +82,7 @@ namespace Maestro.Services.Community
             if (!Enum.IsDefined(typeof(InstrumentType), song.Instrument))
             {
                 result.InstrumentValid = false;
-                result.InstrumentError = "Invalid instrument";
+                result.InstrumentError = "無效的樂器";
             }
             else
             {
@@ -94,7 +94,7 @@ namespace Maestro.Services.Community
             if (noteCount < MIN_NOTE_COUNT)
             {
                 result.NotesValid = false;
-                result.NotesError = $"Song must have at least {MIN_NOTE_COUNT} notes (has {noteCount})";
+                result.NotesError = $"歌曲必須至少包含 {MIN_NOTE_COUNT} 個音符 (目前有 {noteCount} 個)";
             }
             else
             {
@@ -106,7 +106,7 @@ namespace Maestro.Services.Community
             if (durationMs < MIN_DURATION_MS)
             {
                 result.DurationValid = false;
-                result.DurationError = $"Song must be at least {MIN_DURATION_MS / 1000}s long (is {durationMs / 1000.0:0.#}s)";
+                result.DurationError = $"歌曲長度必須至少為 {MIN_DURATION_MS / 1000} 秒 (目前為 {durationMs / 1000.0:0.#} 秒)";
             }
             else
             {
@@ -125,7 +125,7 @@ namespace Maestro.Services.Community
                 if (existingSong != null)
                 {
                     result.IsDuplicate = true;
-                    result.DuplicateError = $"A song with this name, artist, and instrument already exists (by {existingSong.Transcriber})";
+                    result.DuplicateError = $"已存在相同名稱、藝術家與樂器的歌曲 (由 {existingSong.Transcriber} 建立)";
                 }
             }
 
@@ -133,7 +133,7 @@ namespace Maestro.Services.Community
             if (!_rateLimiter.CanUpload())
             {
                 result.RateLimitExceeded = true;
-                result.RateLimitError = "Daily upload limit reached (3 per day)";
+                result.RateLimitError = "已達到每日上傳上限 (每日 3 首)";
             }
 
             return result;

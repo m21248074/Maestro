@@ -162,7 +162,7 @@ namespace Maestro.UI.MaestroCreator
             _octaveLabel = new Label
             {
                 Parent = this,
-                Text = "Octave: Middle",
+                Text = "八度: 中音",
                 Location = new Point(centerX - Layout.OctaveLabelOffset, octaveY),
                 Size = new Point(Layout.OctaveLabelWidth, Layout.OctaveControlHeight),
                 Font = GameService.Content.DefaultFont14,
@@ -228,7 +228,7 @@ namespace Maestro.UI.MaestroCreator
             _restLabel = new Label
             {
                 Parent = _restButton,
-                Text = "REST",
+                Text = "休止",
                 Location = new Point(0, -2),
                 Size = new Point(60, Layout.RestButtonHeight),
                 Font = GameService.Content.DefaultFont12,
@@ -356,8 +356,8 @@ namespace Maestro.UI.MaestroCreator
             {
                 var labels = InstrumentCatalog.Get(_instrument).OctaveLabels;
                 var index = _currentOctave - _minOctave;
-                var octaveName = (index >= 0 && index < labels.Count) ? labels[index] : "Middle";
-                _octaveLabel.Text = $"Octave: {octaveName}";
+                var octaveName = (index >= 0 && index < labels.Count) ? labels[index] : "中音";
+                _octaveLabel.Text = $"八度: {octaveName}";
             }
 
             if (_octaveDownButton != null)

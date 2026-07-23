@@ -37,8 +37,8 @@ namespace Maestro.UI.MaestroCreator
                     Layout.MaxWidth - Layout.ContentPaddingX * 2,
                     Layout.MaxHeight - MaestroTheme.WindowContentTopPadding))
         {
-            Title = "Maestro Creator";
-            Subtitle = "Notes";
+            Title = "Maestro 創作工具";
+            Subtitle = "音符";
             Emblem = Module.Instance.ContentsManager.GetTexture("creator-emblem.png");
             SavesPosition = true;
             Id = "MaestroNoteSequenceWindow_v1";
@@ -104,7 +104,7 @@ namespace Maestro.UI.MaestroCreator
             // built-in X button routes here and must not actually close the window.
             // Use CloseProgrammatic() to hide it alongside the Creator.
             ScreenNotification.ShowNotification(
-                "Close the Creator from its main window instead.",
+                "請改從創作工具的主視窗將其關閉。",
                 ScreenNotification.NotificationType.Warning);
         }
 

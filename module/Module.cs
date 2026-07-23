@@ -156,7 +156,7 @@ namespace Maestro
                 _cornerIcon = new CornerIcon
                 {
                     Icon = iconTexture ?? ContentService.Textures.Error,
-                    BasicTooltipText = "Maestro - Music Player",
+                    BasicTooltipText = "Maestro - 音樂播放器",
                     Priority = CORNER_ICON_PRIORITY
                 };
                 _cornerIcon.Click += OnCornerIconClick;
@@ -167,7 +167,7 @@ namespace Maestro
                 _cornerIcon = new CornerIcon
                 {
                     Icon = ContentService.Textures.Error,
-                    BasicTooltipText = "Maestro - Music Player",
+                    BasicTooltipText = "Maestro - 音樂播放器",
                     Priority = CORNER_ICON_PRIORITY
                 };
                 _cornerIcon.Click += OnCornerIconClick;

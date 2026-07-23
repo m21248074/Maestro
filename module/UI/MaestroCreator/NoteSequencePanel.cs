@@ -135,9 +135,9 @@ namespace Maestro.UI.MaestroCreator
             _headerLabel = new Label
             {
                 Parent = _headerPanel,
-                Text = "Notes: 0",
+                Text = "音符數: 0",
                 Location = new Point(Layout.Padding, 4),
-                Size = new Point(140, Layout.HeaderHeight - 4),
+                Size = new Point(200, Layout.HeaderHeight - 4),
                 Font = GameService.Content.DefaultFont14,
                 TextColor = MaestroTheme.CreamWhite
             };
@@ -155,7 +155,7 @@ namespace Maestro.UI.MaestroCreator
             _clearButton = new IconButton(MaestroIcons.Trash, MaestroTheme.IconGlyph)
             {
                 Parent = _headerPanel,
-                BasicTooltipText = "Clear all notes",
+                BasicTooltipText = "清除所有音符",
                 Location = new Point(clearX, Layout.ButtonY),
                 Size = new Point(btnW, Layout.HeaderHeight)
             };
@@ -175,7 +175,7 @@ namespace Maestro.UI.MaestroCreator
             _undoButton = new IconButton(MaestroIcons.Undo, MaestroTheme.IconGlyph)
             {
                 Parent = _headerPanel,
-                BasicTooltipText = "Undo",
+                BasicTooltipText = "復原",
                 Location = new Point(undoX, Layout.ButtonY),
                 Size = new Point(btnW, Layout.HeaderHeight)
             };
@@ -187,13 +187,13 @@ namespace Maestro.UI.MaestroCreator
             };
 
             _sectionMenu = new ContextMenuStrip();
-            foreach (var name in new[] { "Intro", "Verse", "Chorus", "Bridge", "Outro" })
+            foreach (var name in new[] { "前奏", "主歌", "副歌", "橋段", "尾奏" })
             {
                 var item = _sectionMenu.AddMenuItem(name);
                 var captured = name;
                 item.Click += (s, e) => AddSectionMarker(captured);
             }
-            var customItem = _sectionMenu.AddMenuItem("Custom...");
+            var customItem = _sectionMenu.AddMenuItem("自訂...");
             customItem.Click += (s, e) => ShowCustomSectionInput();
 
             _sectionButton = new IconButton(MaestroIcons.Section, MaestroTheme.IconGlyph)
@@ -201,7 +201,7 @@ namespace Maestro.UI.MaestroCreator
                 Parent = _headerPanel,
                 Location = new Point(sectionX, Layout.ButtonY),
                 Size = new Point(sectionBtnW, Layout.HeaderHeight),
-                BasicTooltipText = "Add a section marker to organize notes"
+                BasicTooltipText = "新增區段標記以組織音符"
             };
             _sectionButton.Click += (s, e) =>
             {
@@ -214,7 +214,7 @@ namespace Maestro.UI.MaestroCreator
                 Parent = _headerPanel,
                 Location = new Point(insertX, Layout.ButtonY),
                 Size = new Point(btnW, Layout.HeaderHeight),
-                BasicTooltipText = "When active, new notes insert after the selected note instead of appending to the end"
+                BasicTooltipText = "啟用時，新音符將插入於所選音符之後，而不是附加在結尾"
             };
             _insertButton.Click += (s, e) =>
             {
@@ -231,7 +231,7 @@ namespace Maestro.UI.MaestroCreator
                 Location = new Point(Layout.Padding, Layout.HeaderHeight + 18),
                 Size = new Point(150, 27),
                 Visible = false,
-                BasicTooltipText = "Jump to section"
+                BasicTooltipText = "跳至區段"
             };
             _sectionJumpDropdown.ValueChanged += OnSectionJumpChanged;
 
@@ -275,25 +275,25 @@ namespace Maestro.UI.MaestroCreator
 
             // Context menu on the chips container
             _contextMenu = new ContextMenuStrip();
-            _previewSelectedItem = _contextMenu.AddMenuItem("Preview Selected");
+            _previewSelectedItem = _contextMenu.AddMenuItem("試聽所選");
             _previewSelectedItem.Click += (s, e) => PreviewSelectionRequested?.Invoke(this, EventArgs.Empty);
 
-            _deleteSelectedItem = _contextMenu.AddMenuItem("Delete Selected");
+            _deleteSelectedItem = _contextMenu.AddMenuItem("刪除所選");
             _deleteSelectedItem.Click += (s, e) => RemoveSelected();
 
-            _replaceItem = _contextMenu.AddMenuItem("Replace");
+            _replaceItem = _contextMenu.AddMenuItem("取代");
             _replaceItem.Click += (s, e) => EnterReplaceMode();
 
-            _copyItem = _contextMenu.AddMenuItem("Copy");
+            _copyItem = _contextMenu.AddMenuItem("複製");
             _copyItem.Click += (s, e) => CopySelected();
 
-            _pasteItem = _contextMenu.AddMenuItem("Paste");
+            _pasteItem = _contextMenu.AddMenuItem("貼上");
             _pasteItem.Click += (s, e) => PasteClipboard();
 
-            _selectAllItem = _contextMenu.AddMenuItem("Select All");
+            _selectAllItem = _contextMenu.AddMenuItem("全選");
             _selectAllItem.Click += (s, e) => SelectAll();
 
-            _clearSelectionItem = _contextMenu.AddMenuItem("Clear Selection");
+            _clearSelectionItem = _contextMenu.AddMenuItem("取消選取");
             _clearSelectionItem.Click += (s, e) => ClearSelection();
 
             _chipsContainer.Menu = _contextMenu;
@@ -322,7 +322,7 @@ namespace Maestro.UI.MaestroCreator
             _pauseButton = new IconButton(MaestroIcons.Pause, MaestroTheme.IconGlyph)
             {
                 Parent = _footerPanel,
-                BasicTooltipText = "Pause",
+                BasicTooltipText = "暫停",
                 Location = new Point(Layout.Padding, btnY),
                 Size = new Point(30, btnHeight),
                 Enabled = false
@@ -332,7 +332,7 @@ namespace Maestro.UI.MaestroCreator
             _stopButton = new IconButton(MaestroIcons.Stop, MaestroTheme.IconGlyph)
             {
                 Parent = _footerPanel,
-                BasicTooltipText = "Stop",
+                BasicTooltipText = "停止",
                 Location = new Point(Layout.Padding + 35, btnY),
                 Size = new Point(30, btnHeight),
                 Enabled = false
@@ -342,7 +342,7 @@ namespace Maestro.UI.MaestroCreator
             _playbackStatusLabel = new Label
             {
                 Parent = _footerPanel,
-                Text = "No song playing",
+                Text = "沒有正在播放的曲目",
                 Location = new Point(Layout.Padding + 72, btnY),
                 Size = new Point(200, btnHeight),
                 Font = GameService.Content.DefaultFont14,
@@ -356,7 +356,7 @@ namespace Maestro.UI.MaestroCreator
                 Parent = _footerPanel,
                 Location = new Point(width - 46, btnY),
                 Size = new Point(36, btnHeight),
-                BasicTooltipText = "Preview all notes"
+                BasicTooltipText = "試聽所有音符"
             };
             _previewAllButton.Click += (s, e) => PreviewAllRequested?.Invoke(this, EventArgs.Empty);
 
@@ -366,7 +366,7 @@ namespace Maestro.UI.MaestroCreator
                 Location = new Point(width - 88, btnY),
                 Size = new Point(36, btnHeight),
                 Enabled = false,
-                BasicTooltipText = "Preview selected notes"
+                BasicTooltipText = "試聽所選音符"
             };
             _previewSelectedButton.Click += (s, e) => PreviewSelectionRequested?.Invoke(this, EventArgs.Empty);
 
@@ -1044,8 +1044,8 @@ namespace Maestro.UI.MaestroCreator
         {
             var noteCount = NoteCount;
             _headerLabel.Text = _selectedIndices.Count > 0
-                ? $"Notes: {noteCount} ({_selectedIndices.Count} selected)"
-                : $"Notes: {noteCount}";
+                ? $"音符數: {noteCount} (已選取 {_selectedIndices.Count} 個)"
+                : $"音符數: {noteCount}";
             UpdateModeStatus();
         }
 
@@ -1053,22 +1053,22 @@ namespace Maestro.UI.MaestroCreator
         {
             if (_isReplaceMode)
             {
-                _modeStatusLabel.Text = $"Click a key to replace note #{_replaceTargetIndex + 1}";
+                _modeStatusLabel.Text = $"點擊按鍵以取代音符 #{_replaceTargetIndex + 1}";
                 _modeStatusLabel.TextColor = MaestroTheme.Error;
             }
             else if (_isInsertMode && _selectedIndices.Count > 0)
             {
-                _modeStatusLabel.Text = $"Inserting after note #{_selectedIndices.Max() + 1}";
+                _modeStatusLabel.Text = $"將於第 #{_selectedIndices.Max() + 1} 個音符後方插入";
                 _modeStatusLabel.TextColor = MaestroTheme.AmberGold;
             }
             else if (_isInsertMode)
             {
-                _modeStatusLabel.Text = "Select a note to insert after";
+                _modeStatusLabel.Text = "請選擇要插入在哪個音符後面";
                 _modeStatusLabel.TextColor = MaestroTheme.AmberGold;
             }
             else if (_chips.Count > 0)
             {
-                _modeStatusLabel.Text = "Right-click notes for more options";
+                _modeStatusLabel.Text = "對音符按一下滑鼠右鍵以檢視更多選項";
                 _modeStatusLabel.TextColor = MaestroTheme.LightGray;
             }
             else
@@ -1120,13 +1120,13 @@ namespace Maestro.UI.MaestroCreator
             _stopButton.Enabled = !enabled;
             if (!enabled)
             {
-                _playbackStatusLabel.Text = "Playing...";
+                _playbackStatusLabel.Text = "播放中...";
                 _playbackStatusLabel.TextColor = MaestroTheme.Playing;
                 _pauseButton.IconTexture = MaestroIcons.Pause;
             }
             else
             {
-                _playbackStatusLabel.Text = "No song playing";
+                _playbackStatusLabel.Text = "沒有正在播放的曲目";
                 _playbackStatusLabel.TextColor = MaestroTheme.HintTextColor;
                 _pauseButton.IconTexture = MaestroIcons.Pause;
             }
@@ -1150,7 +1150,7 @@ namespace Maestro.UI.MaestroCreator
         public void SetPlaybackPaused(bool paused)
         {
             _pauseButton.IconTexture = paused ? MaestroIcons.Play : MaestroIcons.Pause;
-            _playbackStatusLabel.Text = paused ? "Paused" : "Playing...";
+            _playbackStatusLabel.Text = paused ? "已暫停" : "播放中...";
             _playbackStatusLabel.TextColor = paused ? MaestroTheme.Paused : MaestroTheme.Playing;
         }
 
@@ -1205,9 +1205,9 @@ namespace Maestro.UI.MaestroCreator
 
             if (player.IsAdjustingOctave)
             {
-                if (_playbackStatusLabel.Text != "Adjusting...")
+                if (_playbackStatusLabel.Text != "調整中...")
                 {
-                    _playbackStatusLabel.Text = "Adjusting...";
+                    _playbackStatusLabel.Text = "調整中...";
                     _playbackStatusLabel.TextColor = MaestroTheme.AmberGold;
                 }
                 return;
@@ -1216,9 +1216,9 @@ namespace Maestro.UI.MaestroCreator
             if (player.IsPaused)
                 return;
 
-            if (_playbackStatusLabel.Text != "Playing...")
+            if (_playbackStatusLabel.Text != "播放中...")
             {
-                _playbackStatusLabel.Text = "Playing...";
+                _playbackStatusLabel.Text = "播放中...";
                 _playbackStatusLabel.TextColor = MaestroTheme.Playing;
             }
 

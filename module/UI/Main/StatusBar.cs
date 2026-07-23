@@ -180,7 +180,7 @@ namespace Maestro.UI.Main
                 Parent = this,
                 Location = new Point(x, 0),
                 Size = new Point(buttonWidth, MaestroTheme.ActionButtonHeight),
-                BasicTooltipText = "Import songs"
+                BasicTooltipText = "匯入歌曲"
             };
             _importButton.Click += (s, e) => ImportClicked?.Invoke(this, EventArgs.Empty);
             x -= buttonWidth + buttonSpacing;
@@ -190,7 +190,7 @@ namespace Maestro.UI.Main
                 Parent = this,
                 Location = new Point(x, 0),
                 Size = new Point(buttonWidth, MaestroTheme.ActionButtonHeight),
-                BasicTooltipText = "Create a song"
+                BasicTooltipText = "建立歌曲"
             };
             _createButton.Click += OnCreateButtonClick;
             x -= buttonWidth + buttonSpacing;
@@ -200,7 +200,7 @@ namespace Maestro.UI.Main
                 Parent = this,
                 Location = new Point(x, 0),
                 Size = new Point(buttonWidth, MaestroTheme.ActionButtonHeight),
-                BasicTooltipText = "Browse & upload community songs"
+                BasicTooltipText = "瀏覽 & 上傳社群歌曲"
             };
             _communityButton.Click += (s, e) => CommunityClicked?.Invoke(this, EventArgs.Empty);
         }
@@ -242,8 +242,8 @@ namespace Maestro.UI.Main
         private void UpdateText()
         {
             _statusLabel.Text = _visibleCount == _totalCount
-                ? $"  {_totalCount} songs"
-                : $"  {_visibleCount} of {_totalCount} songs";
+                ? $" 共 {_totalCount} 首歌曲"
+                : $" 顯示 {_visibleCount} / {_totalCount} 首歌曲";
         }
 
         protected override void DisposeControl()

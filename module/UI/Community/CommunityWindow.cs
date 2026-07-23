@@ -57,7 +57,7 @@ namespace Maestro.UI.Community
             _communityService = communityService;
             _songCards = new Dictionary<string, CommunitySongCard>();
 
-            Title = "Community Songs";
+            Title = "社群歌曲";
             Emblem = Module.Instance.ContentsManager.GetTexture("community-emblem.png");
             SavesPosition = true;
             Id = "CommunityWindow_v1";
@@ -72,7 +72,7 @@ namespace Maestro.UI.Community
 
         private static string[] BuildInstrumentFilterItems()
         {
-            var items = new List<string> { "All" };
+            var items = new List<string> { "全部" };
             items.AddRange(InstrumentCatalog.Pickable.Select(i => i.DisplayName));
             return items.ToArray();
         }
@@ -106,13 +106,13 @@ namespace Maestro.UI.Community
                 Location = new Point(0, 0),
                 Width = searchWidth,
                 Height = 26,
-                PlaceholderText = "Search songs..."
+                PlaceholderText = "搜尋歌曲..."
             };
             _searchBox.TextChanged += OnFilterChanged;
 
             _filterButton = new GenericFilterButton(
-                new FilterSection { Items = BuildInstrumentFilterItems(), DefaultValue = "All" },
-                new FilterSection { Items = new[] { "Newest", "Name A-Z", "Name Z-A" }, DefaultValue = "Newest" })
+                new FilterSection { Items = BuildInstrumentFilterItems(), DefaultValue = "全部" },
+                new FilterSection { Items = new[] { "最新", "名稱 A-Z", "名稱 Z-A" }, DefaultValue = "最新" })
             {
                 Parent = filterPanel,
                 Location = new Point(Layout.ContentWidth - filterWidth, 0),
@@ -147,7 +147,7 @@ namespace Maestro.UI.Community
             _uploadButton = new IconButton(MaestroIcons.Upload, MaestroTheme.IconGlyph)
             {
                 Parent = this,
-                BasicTooltipText = "Upload a song",
+                BasicTooltipText = "上傳歌曲",
                 Location = new Point(uploadX, currentY),
                 Width = uploadWidth,
                 Height = 26
@@ -157,7 +157,7 @@ namespace Maestro.UI.Community
             _refreshButton = new IconButton(MaestroIcons.Refresh, MaestroTheme.IconGlyph)
             {
                 Parent = this,
-                BasicTooltipText = "Refresh",
+                BasicTooltipText = "重新整理",
                 Location = new Point(refreshX, currentY),
                 Width = refreshWidth,
                 Height = 26
@@ -222,7 +222,7 @@ namespace Maestro.UI.Community
         {
             _refreshButton.Enabled = false;
             _loadingSpinner.Visible = true;
-            _statusLabel.Text = "Refreshing...";
+            _statusLabel.Text = "重新整理中...";
 
             try
             {
@@ -266,20 +266,20 @@ namespace Maestro.UI.Community
             _songListPanel.ClearChildren();
 
             var searchTerm = _searchBox?.Text?.ToLower() ?? "";
-            var instrumentFilter = _filterButton?.SelectedValue1 ?? "All";
-            var sortOption = _filterButton?.SelectedValue2 ?? "Newest";
+            var instrumentFilter = _filterButton?.SelectedValue1 ?? "全部";
+            var sortOption = _filterButton?.SelectedValue2 ?? "最新";
 
             var songs = _communityService.SearchSongs(searchTerm, instrumentFilter);
 
             switch (sortOption)
             {
-                case "Newest":
+                case "最新":
                     songs = songs.OrderByDescending(s => s.CreatedAt);
                     break;
-                case "Name A-Z":
+                case "名稱 A-Z":
                     songs = songs.OrderBy(s => s.Name);
                     break;
-                case "Name Z-A":
+                case "名稱 Z-A":
                     songs = songs.OrderByDescending(s => s.Name);
                     break;
             }
@@ -337,8 +337,8 @@ namespace Maestro.UI.Community
             var downloaded = _songCards.Values.Count(c => c.IsDownloaded);
 
             _statusLabel.Text = displayed == total
-                ? $"{total} songs available | {downloaded} downloaded"
-                : $"Showing {displayed} of {total} songs | {downloaded} downloaded";
+                ? $"共 {total} 首歌曲可獲取 | 已下載 {downloaded} 首"
+                : $"顯示 {displayed} / {total} 首歌曲 | 已下載 {downloaded} 首";
         }
 
         protected override void DisposeControl()

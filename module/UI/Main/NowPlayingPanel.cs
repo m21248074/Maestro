@@ -157,7 +157,7 @@ namespace Maestro.UI.Main
             var button = new IconButton(MaestroIcons.Pause, MaestroTheme.IconGlyph)
             {
                 Parent = this,
-                BasicTooltipText = "Pause",
+                BasicTooltipText = "暫停",
                 Location = new Point(Layout.PauseButtonX, Layout.ButtonY),
                 Width = Layout.ButtonWidth,
                 Enabled = false
@@ -171,7 +171,7 @@ namespace Maestro.UI.Main
             var button = new IconButton(MaestroIcons.Stop, MaestroTheme.IconGlyph)
             {
                 Parent = this,
-                BasicTooltipText = "Stop",
+                BasicTooltipText = "停止",
                 Location = new Point(Layout.StopButtonX, Layout.ButtonY),
                 Width = Layout.ButtonWidth,
                 Enabled = false
@@ -186,7 +186,7 @@ namespace Maestro.UI.Main
             return new MarqueeLabel
             {
                 Parent = this,
-                Text = "No song playing",
+                Text = "沒有正在播放的曲目",
                 Location = new Point(Layout.LabelX, Layout.LabelYCentered),
                 Width = availableWidth,
                 Font = GameService.Content.DefaultFont14,
@@ -227,7 +227,7 @@ namespace Maestro.UI.Main
             return new Label
             {
                 Parent = this,
-                Text = "Speed:",
+                Text = "速度:",
                 Location = new Point(Layout.SideMargin, Layout.SpeedLabelY),
                 Width = RowWidth,
                 HorizontalAlignment = HorizontalAlignment.Left,
@@ -319,7 +319,7 @@ namespace Maestro.UI.Main
                 Parent = this,
                 Location = new Point(panelWidth - Layout.QueueButtonWidth - Layout.QueueButtonRightPadding, Layout.QueueButtonY),
                 Size = new Point(Layout.QueueButtonWidth, MaestroTheme.ActionButtonHeight),
-                BasicTooltipText = "Toggle Queue"
+                BasicTooltipText = "切換佇列"
             };
             button.Click += (s, e) => QueueToggleClicked?.Invoke(this, EventArgs.Empty);
             return button;
@@ -430,7 +430,7 @@ namespace Maestro.UI.Main
         {
             _pauseButton.IconTexture = MaestroIcons.Play;
             _nowPlayingLabel.TextColor = MaestroTheme.CreamWhite;
-            _progressLabel.Text = "Paused" + GetQueueSuffix();
+            _progressLabel.Text = "已暫停" + GetQueueSuffix();
             _progressLabel.TextColor = MaestroTheme.Paused;
         }
 
@@ -456,12 +456,12 @@ namespace Maestro.UI.Main
             var isComplete = song != null && _songPlayer.CurrentCommandIndex >= song.Commands.Count;
             if (isComplete)
             {
-                _progressLabel.Text = "Done!" + GetQueueSuffix();
+                _progressLabel.Text = "完成!" + GetQueueSuffix();
             }
             else
             {
                 var progress = CalculateProgress(song);
-                _progressLabel.Text = $"Playing... {progress:F0}%" + GetQueueSuffix();
+                _progressLabel.Text = $"播放中... {progress:F0}%" + GetQueueSuffix();
             }
         }
 
@@ -475,12 +475,12 @@ namespace Maestro.UI.Main
                 _nowPlayingLabel.Text = song.DisplayName;
                 _nowPlayingLabel.Location = new Point(Layout.LabelX, Layout.LabelYPlaying);
                 _nowPlayingLabel.TextColor = MaestroTheme.CreamWhite;
-                _progressLabel.Text = "Done!";
+                _progressLabel.Text = "完成!";
                 _progressLabel.TextColor = MaestroTheme.MutedCream;
             }
             else
             {
-                _nowPlayingLabel.Text = "No song playing";
+                _nowPlayingLabel.Text = "沒有正在播放的曲目";
                 _nowPlayingLabel.Location = new Point(Layout.LabelX, Layout.LabelYCentered);
                 _nowPlayingLabel.TextColor = MaestroTheme.MutedCream;
                 _progressLabel.Text = "";
@@ -516,12 +516,12 @@ namespace Maestro.UI.Main
             if (_songPlayer.IsWaitingForInput)
             {
                 _pauseButton.IconTexture = MaestroIcons.Play;
-                _progressLabel.Text = "Paused" + GetQueueSuffix();
+                _progressLabel.Text = "已暫停" + GetQueueSuffix();
                 _progressLabel.TextColor = MaestroTheme.Paused;
             }
             else if (_songPlayer.IsAdjustingOctave)
             {
-                _progressLabel.Text = "Adjusting..." + GetQueueSuffix();
+                _progressLabel.Text = "調整中..." + GetQueueSuffix();
                 _progressLabel.TextColor = MaestroTheme.Paused;
             }
             else

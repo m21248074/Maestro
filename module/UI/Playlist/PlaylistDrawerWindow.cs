@@ -170,7 +170,7 @@ namespace Maestro.UI.Playlist
             _shuffleButton = new IconButton(MaestroIcons.Shuffle, MaestroTheme.IconGlyph)
             {
                 Parent = this,
-                BasicTooltipText = "Shuffle: Off",
+                BasicTooltipText = "隨機播放: 關閉",
                 Location = new Point(x, Layout.FooterButtonY),
                 Width = Layout.ButtonWidth,
                 Height = Layout.ButtonHeight
@@ -181,7 +181,7 @@ namespace Maestro.UI.Playlist
             _repeatButton = new IconButton(MaestroIcons.Repeat, MaestroTheme.IconGlyph)
             {
                 Parent = this,
-                BasicTooltipText = "Repeat: Off",
+                BasicTooltipText = "重複播放: 關閉",
                 Location = new Point(x, Layout.FooterButtonY),
                 Width = Layout.ButtonWidth,
                 Height = Layout.ButtonHeight
@@ -192,7 +192,7 @@ namespace Maestro.UI.Playlist
             _clearButton = new IconButton(MaestroIcons.Trash, MaestroTheme.IconGlyph)
             {
                 Parent = this,
-                BasicTooltipText = "Clear queue",
+                BasicTooltipText = "清除佇列",
                 Location = new Point(x, Layout.FooterButtonY),
                 Width = Layout.ButtonWidth,
                 Height = Layout.ButtonHeight
@@ -203,7 +203,7 @@ namespace Maestro.UI.Playlist
             _playButton = new IconButton(MaestroIcons.Play, MaestroTheme.IconGlyph)
             {
                 Parent = this,
-                BasicTooltipText = "Play queue",
+                BasicTooltipText = "播放佇列",
                 Location = new Point(x, Layout.FooterButtonY),
                 Width = Layout.ButtonWidth,
                 Height = Layout.ButtonHeight
@@ -304,7 +304,7 @@ namespace Maestro.UI.Playlist
         {
             var on = _playlistService.Shuffle;
             _shuffleButton.Selected = on;
-            _shuffleButton.BasicTooltipText = on ? "Shuffle On" : "Shuffle Off";
+            _shuffleButton.BasicTooltipText = on ? "隨機播放: 開啟" : "隨機播放: 關閉";
         }
 
         private void UpdateRepeatVisual()
@@ -313,15 +313,15 @@ namespace Maestro.UI.Playlist
             {
                 case RepeatMode.All:
                     _repeatButton.Selected = true;
-                    _repeatButton.BasicTooltipText = "Repeat all songs";
+                    _repeatButton.BasicTooltipText = "重複播放全部";
                     break;
                 case RepeatMode.One:
                     _repeatButton.Selected = true;
-                    _repeatButton.BasicTooltipText = "Repeat current song";
+                    _repeatButton.BasicTooltipText = "重複播放單曲";
                     break;
                 default:
                     _repeatButton.Selected = false;
-                    _repeatButton.BasicTooltipText = "Repeat off";
+                    _repeatButton.BasicTooltipText = "關閉重複";
                     break;
             }
         }
@@ -411,7 +411,7 @@ namespace Maestro.UI.Playlist
         {
             var isNext = _isPlayingFromQueue && _playlistService.HasItems;
             _playButton.IconTexture = isNext ? MaestroIcons.Next : MaestroIcons.Play;
-            _playButton.BasicTooltipText = isNext ? "Next" : "Play queue";
+            _playButton.BasicTooltipText = isNext ? "下一首" : "播放佇列";
         }
 
         private static Point GetDragHandleOffset()

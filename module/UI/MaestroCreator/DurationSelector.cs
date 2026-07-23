@@ -127,7 +127,7 @@ namespace Maestro.UI.MaestroCreator
                 Location = new Point(Layout.BpmLabelWidth, 0),
                 Size = new Point(Layout.BpmInputWidth, Layout.NoteButtonHeight),
                 Font = GameService.Content.DefaultFont12,
-                BasicTooltipText = $"Tempo in beats per minute ({Layout.MinBpm}-{Layout.MaxBpm})"
+                BasicTooltipText = $"速度，單位為每分鐘拍數 ({Layout.MinBpm}-{Layout.MaxBpm})"
             };
             _bpmInput.TextChanged += OnBpmTextChanged;
             _bpmInput.InputFocusChanged += OnBpmInputFocusChanged;
@@ -138,7 +138,7 @@ namespace Maestro.UI.MaestroCreator
             {
                 var noteType = _noteTypes[i];
                 var isSelected = noteType == _selectedNoteType;
-                var tooltipText = $"{noteType.GetDisplayName()} note ({noteType.GetDurationMs(_bpm)}ms @ {_bpm} BPM)";
+                var tooltipText = $"{noteType.GetDisplayName()}音符 ({noteType.GetDurationMs(_bpm)}毫秒 @ {_bpm} BPM)";
 
                 var button = new Panel
                 {
@@ -189,20 +189,20 @@ namespace Maestro.UI.MaestroCreator
                 Location = new Point(dottedX, 0),
                 Size = new Point(42, Layout.NoteButtonHeight),
                 BackgroundColor = MaestroTheme.GhostButtonBackground,
-                BasicTooltipText = "Dotted note (+50% duration)"
+                BasicTooltipText = "附點音符 (持續時間 +50%)"
             };
 
             _dottedLabel = new Label
             {
                 Parent = _dottedButton,
-                Text = "Dot",
+                Text = "附點",
                 Location = new Point(0, 0),
                 Size = new Point(42, Layout.NoteButtonHeight),
                 Font = GameService.Content.DefaultFont12,
                 TextColor = MaestroTheme.GhostButtonText,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Middle,
-                BasicTooltipText = "Dotted note (+50% duration)"
+                BasicTooltipText = "附點音符 (持續時間 +50%)"
             };
 
             _dottedButton.MouseEntered += (s, e) =>
@@ -301,7 +301,7 @@ namespace Maestro.UI.MaestroCreator
                 var noteType = _noteTypes[i];
                 var baseMs = noteType.GetDurationMs(_bpm);
                 var effectiveMs = _isDotted ? (int)(baseMs * 1.5) : baseMs;
-                var tooltipText = $"{noteType.GetDisplayName()} note ({effectiveMs}ms @ {_bpm} BPM{dottedSuffix})";
+                var tooltipText = $"{noteType.GetDisplayName()}音符 ({effectiveMs}毫秒 @ {_bpm} BPM{dottedSuffix})";
                 _noteButtons[i].BasicTooltipText = tooltipText;
                 _noteLabels[i].BasicTooltipText = tooltipText;
             }
@@ -309,7 +309,7 @@ namespace Maestro.UI.MaestroCreator
             if (_dottedButton != null)
             {
                 var dottedMs = CurrentDurationMs;
-                _dottedButton.BasicTooltipText = $"Dotted note (+50% duration) — current: {dottedMs}ms";
+                _dottedButton.BasicTooltipText = $"附點音符 (持續時間 +50%) — 目前: {dottedMs}毫秒";
                 _dottedLabel.BasicTooltipText = _dottedButton.BasicTooltipText;
             }
         }

@@ -11,42 +11,42 @@ namespace Maestro.Models
     /// </summary>
     public static class InstrumentCatalog
     {
-        private static readonly string[] ThreeOctaveLabels = { "Lower (-)", "Middle", "Upper (+)" };
+        private static readonly string[] ThreeOctaveLabels = { "低音 (-)", "中音", "高音 (+)" };
 
         private static readonly IReadOnlyList<InstrumentInfo> _all = new List<InstrumentInfo>
         {
-            new InstrumentInfo(InstrumentType.Piano, "Piano",
+            new InstrumentInfo(InstrumentType.Piano, "鋼琴",
                 new Color(79, 155, 224), new Color(53, 122, 192),   // sapphire
                 sharpsEnabled: true, minOctave: -1, maxOctave: 1, octaveLabels: ThreeOctaveLabels),
 
-            new InstrumentInfo(InstrumentType.Harp, "Harp",
+            new InstrumentInfo(InstrumentType.Harp, "豎琴",
                 new Color(107, 194, 136), new Color(62, 154, 99),   // emerald
                 sharpsEnabled: false, minOctave: -1, maxOctave: 1, octaveLabels: ThreeOctaveLabels),
 
-            new InstrumentInfo(InstrumentType.Lute, "Lute",
+            new InstrumentInfo(InstrumentType.Lute, "魯特琴",
                 new Color(227, 165, 58), new Color(190, 132, 32),   // amber
                 sharpsEnabled: false, minOctave: -1, maxOctave: 1, octaveLabels: ThreeOctaveLabels),
 
-            new InstrumentInfo(InstrumentType.Bass, "Bass",
+            new InstrumentInfo(InstrumentType.Bass, "貝斯",
                 new Color(224, 106, 124), new Color(184, 72, 94),   // garnet rose
                 sharpsEnabled: false, minOctave: 0, maxOctave: 1,
                 octaveLabels: new[] { "Low", "High" }),
 
-            new InstrumentInfo(InstrumentType.Flute, "Flute",
+            new InstrumentInfo(InstrumentType.Flute, "長笛",
                 new Color(165, 121, 224), new Color(126, 84, 190),  // amethyst
                 sharpsEnabled: false, minOctave: -1, maxOctave: 0,
                 octaveLabels: new[] { "Low", "Middle" }),
 
-            new InstrumentInfo(InstrumentType.Bell, "Bell (3 octaves)",
+            new InstrumentInfo(InstrumentType.Bell, "鈴鐺 (3 個八度)",
                 new Color(63, 194, 178), new Color(42, 148, 136),   // turquoise
                 sharpsEnabled: false, minOctave: -1, maxOctave: 1, octaveLabels: ThreeOctaveLabels),
 
-            new InstrumentInfo(InstrumentType.BellMagnanimous, "Bell (2 octaves)",
+            new InstrumentInfo(InstrumentType.BellMagnanimous, "鈴鐺 (2 個八度)",
                 new Color(116, 214, 190), new Color(73, 174, 151),  // mint (bell family)
                 sharpsEnabled: false, minOctave: 0, maxOctave: 1,
                 octaveLabels: new[] { "Middle", "High" }),
 
-            new InstrumentInfo(InstrumentType.DrumSet, "Drum Set",
+            new InstrumentInfo(InstrumentType.DrumSet, "鼓組",
                 new Color(198, 110, 64), new Color(160, 82, 45),    // copper/bronze
                 sharpsEnabled: false, minOctave: 0, maxOctave: 0,
                 octaveLabels: new[] { "Kit" },

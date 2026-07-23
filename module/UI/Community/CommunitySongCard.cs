@@ -115,7 +115,7 @@ namespace Maestro.UI.Community
             _actionButton = new IconButton(MaestroIcons.Download, MaestroTheme.IconGlyph)
             {
                 Parent = this,
-                BasicTooltipText = "Download",
+                BasicTooltipText = "下載",
                 Location = new Point(width - Layout.ButtonWidth - Layout.ButtonRightMargin, Layout.ButtonY),
                 Width = Layout.ButtonWidth,
                 Height = Layout.ButtonHeight
@@ -164,7 +164,7 @@ namespace Maestro.UI.Community
             var isDownloaded = _downloadState == DownloadState.Completed;
             Menu = isDownloaded ? _contextMenu : null;
 
-            const string tooltip = "Right-click for options";
+            const string tooltip = "按右鍵以顯示選項";
             BasicTooltipText = isDownloaded ? tooltip : null;
             _indicator.BasicTooltipText = isDownloaded ? tooltip : null;
             _instrumentLabel.BasicTooltipText = isDownloaded ? tooltip : null;
@@ -175,7 +175,7 @@ namespace Maestro.UI.Community
             {
                 case DownloadState.Idle:
                     _actionButton.IconTexture = MaestroIcons.Download;
-                    _actionButton.BasicTooltipText = "Download";
+                    _actionButton.BasicTooltipText = "下載";
                     _actionButton.Visible = true;
                     _actionButton.Enabled = true;
                     _progressLabel.Visible = false;
@@ -205,7 +205,7 @@ namespace Maestro.UI.Community
 
                 case DownloadState.Cancelled:
                     _actionButton.IconTexture = MaestroIcons.Download;
-                    _actionButton.BasicTooltipText = "Download";
+                    _actionButton.BasicTooltipText = "下載";
                     _actionButton.Visible = true;
                     _actionButton.Enabled = true;
                     _progressLabel.Visible = false;

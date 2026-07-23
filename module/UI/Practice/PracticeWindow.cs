@@ -74,7 +74,7 @@ namespace Maestro.UI.Practice
             Song = song;
             _settings = settings;
 
-            Title = "Practice";
+            Title = "練習";
             Subtitle = $"{song.Name} - {song.Artist}";
             SavesPosition = true;
             Id = "PracticeWindow_v1";
@@ -158,7 +158,7 @@ namespace Maestro.UI.Practice
             _confirmationLabel = new Label
             {
                 Parent = _confirmationOverlay,
-                Text = $"Equip your {_song.Instrument} and click Ready",
+                Text = $"請裝備您的 {_song.Instrument} 並點擊準備",
                 Location = new Point(0, blockTop),
                 Size = new Point(Layout.ContentWidth, titleHeight),
                 Font = GameService.Content.DefaultFont18,
@@ -171,10 +171,10 @@ namespace Maestro.UI.Practice
             _octaveNoteLabel = new Label
             {
                 Parent = _confirmationOverlay,
-                Text = "Octaves are switched automatically for now.\n" +
-                       "An upcoming release will let you handle them yourself.\n" +
-                       "Tiles marked # are sharp notes (a piano's black keys).\n" +
-                       "Play them like in game: Alt + skill slots 1-5 (C# D# F# G# A#).",
+                Text = "目前八度音階會自動切換。\n" +
+                       "未來版本將允許您自行調整。\n" +
+                       "標記為 # 的方塊為升記號(即鋼琴的黑鍵)。\n" +
+                       "請像遊戲中一樣進行演奏: Alt + 技能欄位 1-5 (C# D# F# G# A#).",
                 Location = new Point(0, noteTop),
                 Size = new Point(Layout.ContentWidth, noteHeight),
                 Font = GameService.Content.DefaultFont14,
@@ -186,7 +186,7 @@ namespace Maestro.UI.Practice
             _readyButton = new StandardButton
             {
                 Parent = _confirmationOverlay,
-                Text = "Ready",
+                Text = "準備",
                 Location = new Point((Layout.ContentWidth - 100) / 2, noteTop + noteHeight + noteToButtonGap),
                 Size = new Point(100, buttonHeight),
             };
@@ -208,7 +208,7 @@ namespace Maestro.UI.Practice
             _resultTitleLabel = new Label
             {
                 Parent = _resultOverlay,
-                Text = "SONG COMPLETE",
+                Text = "歌曲完成",
                 Location = new Point(0, centerY - 110),
                 Size = new Point(Layout.ContentWidth, 30),
                 Font = GameService.Content.DefaultFont18,
@@ -219,7 +219,7 @@ namespace Maestro.UI.Practice
             _resultScoreLabel = new Label
             {
                 Parent = _resultOverlay,
-                Text = "SCORE 0",
+                Text = "分數 0",
                 Location = new Point(0, centerY - 70),
                 Size = new Point(Layout.ContentWidth, 42),
                 Font = GameService.Content.DefaultFont32 ?? GameService.Content.DefaultFont18,
@@ -230,7 +230,7 @@ namespace Maestro.UI.Practice
             _resultComboLabel = new Label
             {
                 Parent = _resultOverlay,
-                Text = "MAX COMBO x0",
+                Text = "最高連擊 x0",
                 Location = new Point(0, centerY - 20),
                 Size = new Point(Layout.ContentWidth, 26),
                 Font = GameService.Content.DefaultFont16,
@@ -252,7 +252,7 @@ namespace Maestro.UI.Practice
             _resultRestartButton = new StandardButton
             {
                 Parent = _resultOverlay,
-                Text = "Restart",
+                Text = "重新開始",
                 Location = new Point(Layout.ContentWidth / 2 - 108, centerY + 52),
                 Size = new Point(100, 30),
             };
@@ -261,7 +261,7 @@ namespace Maestro.UI.Practice
             _resultCloseButton = new StandardButton
             {
                 Parent = _resultOverlay,
-                Text = "Close",
+                Text = "關閉",
                 Location = new Point(Layout.ContentWidth / 2 + 8, centerY + 52),
                 Size = new Point(100, 30),
             };
@@ -274,10 +274,10 @@ namespace Maestro.UI.Practice
         private void OnSessionCompleted(PracticeResult result)
         {
             int score = result.PerfectCount * 100 + result.GoodCount * 50;
-            _resultScoreLabel.Text = $"SCORE {score}";
-            _resultComboLabel.Text = $"MAX COMBO x{result.MaxCombo}";
+            _resultScoreLabel.Text = $"分數 {score}";
+            _resultComboLabel.Text = $"最高連擊 x{result.MaxCombo}";
             _resultBreakdownLabel.Text =
-                $"Perfect {result.PerfectCount}   Good {result.GoodCount}   Miss {result.MissCount}   Wrong {result.WrongCount}";
+                $"完美 {result.PerfectCount}   良好 {result.GoodCount}   未中 {result.MissCount}   錯誤 {result.WrongCount}";
             _resultOverlay.Visible = true;
         }
 

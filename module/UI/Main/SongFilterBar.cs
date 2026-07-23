@@ -45,7 +45,7 @@ namespace Maestro.UI.Main
                 Parent = this,
                 Location = new Point(Layout.SearchBoxX, Layout.ControlY),
                 Width = Layout.SearchBoxWidth,
-                PlaceholderText = "Search songs..."
+                PlaceholderText = "搜尋歌曲..."
             };
             _searchBox.TextChanged += (s, e) => SearchChanged?.Invoke(this, EventArgs.Empty);
             _searchBox.InputFocusChanged += (s, e) =>
@@ -58,12 +58,12 @@ namespace Maestro.UI.Main
 #if DEBUG
             var sourceItems = new[] { "All", "Favorites", "Bundled", "Created", "Imported", "Community", "Submittals" };
 #else
-            var sourceItems = new[] { "All", "Favorites", "Bundled", "Created", "Imported", "Community" };
+            var sourceItems = new[] { "全部", "收藏", "內建", "自建", "已匯入", "社群" };
 #endif
             _filterButton = new GenericFilterButton(
-                new FilterSection { Items = sourceItems, DefaultValue = "All" },
-                new FilterSection { Items = BuildInstrumentFilterItems(), DefaultValue = "All" },
-                new FilterSection { Items = new[] { "Name A-Z", "Name Z-A" }, DefaultValue = "Name A-Z" })
+                new FilterSection { Items = sourceItems, DefaultValue = "全部" },
+                new FilterSection { Items = BuildInstrumentFilterItems(), DefaultValue = "全部" },
+                new FilterSection { Items = new[] { "名稱 A-Z", "名稱 Z-A" }, DefaultValue = "名稱 A-Z" })
             {
                 Parent = this,
                 Location = new Point(width - Layout.FilterButtonWidth, Layout.ControlY),
@@ -74,7 +74,7 @@ namespace Maestro.UI.Main
 
         private static string[] BuildInstrumentFilterItems()
         {
-            var items = new List<string> { "All" };
+            var items = new List<string> { "全部" };
             items.AddRange(InstrumentCatalog.Pickable.Select(i => i.DisplayName));
             return items.ToArray();
         }
