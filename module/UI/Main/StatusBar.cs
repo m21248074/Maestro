@@ -212,7 +212,7 @@ namespace Maestro.UI.Main
                 Parent = this,
                 Location = new Point(x, 0),
                 Size = new Point(buttonWidth, MaestroTheme.ActionButtonHeight),
-                BasicTooltipText = "Support Maestro"
+                BasicTooltipText = "支持 Maestro"
             };
             _supportButton.Click += (s, e) => SupportClicked?.Invoke(this, EventArgs.Empty);
         }

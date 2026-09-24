@@ -24,7 +24,7 @@ namespace Maestro.UI.Support
 
         private sealed class SupportFooter : Control
         {
-            private const string Message = "Every song played, shared, and enjoyed already means a lot.";
+            private const string Message = "每一首被演奏、分享與喜愛的歌曲，對我們都意義重大。";
 
             protected override void Paint(SpriteBatch spriteBatch, Rectangle bounds)
             {
@@ -60,7 +60,7 @@ namespace Maestro.UI.Support
                 new Rectangle(0, 0, Layout.WindowWidth, Layout.WindowHeight),
                 new Rectangle(15, MaestroTheme.WindowContentTopPadding, Layout.ContentWidth, Layout.WindowHeight))
         {
-            Title = "Support";
+            Title = "支持";
             Subtitle = "Maestro";
             Emblem = Module.Instance.ContentsManager.GetTexture("support-emblem.png");
             SavesPosition = true;
@@ -76,7 +76,7 @@ namespace Maestro.UI.Support
                 Location = new Point(0, currentY),
                 Size = new Point(Layout.ContentWidth, 28),
                 Font = GameService.Content.DefaultFont16,
-                Text = "Thanks for using Maestro!",
+                Text = "感謝您使用 Maestro!",
                 TextColor = MaestroTheme.CreamWhite,
                 HorizontalAlignment = HorizontalAlignment.Center
             };
@@ -87,7 +87,7 @@ namespace Maestro.UI.Support
                 Location = new Point(12, currentY + 32),
                 Size = new Point(Layout.ContentWidth - 24, 48),
                 Font = GameService.Content.DefaultFont14,
-                Text = "Your support helps fund future updates\nand community features.",
+                Text = "您的支持將協助資助未來的更新與社群功能。",
                 TextColor = MaestroTheme.MutedCream,
                 HorizontalAlignment = HorizontalAlignment.Center
             };
@@ -95,16 +95,16 @@ namespace Maestro.UI.Support
 
             CreateMethodLabels(
                 currentY,
-                "Support on Ko-fi",
-                "Support future updates and community features.");
+                "在 Ko-fi 上支持我們",
+                "支持未來的更新與社群功能。");
 
             var koFiButton = new StandardButton
             {
                 Parent = this,
                 Location = new Point(Layout.ContentWidth - Layout.ActionButtonWidth, currentY + 21),
                 Size = new Point(Layout.ActionButtonWidth, MaestroTheme.ActionButtonHeight),
-                Text = "Open Ko-fi",
-                BasicTooltipText = "Open ko-fi.com/aex in your browser"
+                Text = "開啟 Ko-fi",
+                BasicTooltipText = "在瀏覽器中開啟 ko-fi.com/aex"
             };
             koFiButton.Click += OnKoFiClicked;
             currentY += Layout.MethodHeight;
@@ -120,16 +120,16 @@ namespace Maestro.UI.Support
 
             CreateMethodLabels(
                 currentY,
-                "Send in-game gold",
-                $"Guild Wars 2 account: {SupportLinks.GameAccountName}");
+                "贈送遊戲內金幣",
+                $"激戰 2 帳號: {SupportLinks.GameAccountName}");
 
             _copyButton = new StandardButton
             {
                 Parent = this,
                 Location = new Point(Layout.ContentWidth - Layout.ActionButtonWidth, currentY + 21),
                 Size = new Point(Layout.ActionButtonWidth, MaestroTheme.ActionButtonHeight),
-                Text = "Copy account",
-                BasicTooltipText = $"Copy {SupportLinks.GameAccountName}"
+                Text = "複製帳號",
+                BasicTooltipText = $"複製 {SupportLinks.GameAccountName}"
             };
             _copyButton.Click += OnCopyClicked;
             currentY += Layout.MethodHeight + 10;
@@ -184,7 +184,7 @@ namespace Maestro.UI.Support
             {
                 Logger.Error(ex, "Failed to open Ko-fi support link");
                 ScreenNotification.ShowNotification(
-                    "Could not open Ko-fi. Visit ko-fi.com/aex in your browser.",
+                    "無法開啟 Ko-fi，請在瀏覽器中前往 ko-fi.com/aex。",
                     ScreenNotification.NotificationType.Error);
             }
         }
@@ -192,7 +192,7 @@ namespace Maestro.UI.Support
         private async void OnCopyClicked(object sender, MouseEventArgs e)
         {
             _copyButton.Enabled = false;
-            _copyButton.Text = "Copying...";
+            _copyButton.Text = "複製中...";
 
             try
             {
@@ -203,9 +203,9 @@ namespace Maestro.UI.Support
                     return;
                 }
 
-                _copyButton.Text = "Copied";
+                _copyButton.Text = "已複製";
                 ScreenNotification.ShowNotification(
-                    $"{SupportLinks.GameAccountName} copied to clipboard.",
+                    $"已將 {SupportLinks.GameAccountName} 複製到剪貼簿。",
                     ScreenNotification.NotificationType.Info);
             }
             catch (Exception ex)
@@ -221,15 +221,15 @@ namespace Maestro.UI.Support
 
         protected override void OnShown(EventArgs e)
         {
-            _copyButton.Text = "Copy account";
+            _copyButton.Text = "複製帳號";
             base.OnShown(e);
         }
 
         private void ShowCopyFailure()
         {
-            _copyButton.Text = "Copy account";
+            _copyButton.Text = "複製帳號";
             ScreenNotification.ShowNotification(
-                $"Could not copy the account name. Use {SupportLinks.GameAccountName}.",
+                $"無法複製帳號名稱，請手動輸入 {SupportLinks.GameAccountName}。",
                 ScreenNotification.NotificationType.Error);
         }
     }

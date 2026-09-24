@@ -365,7 +365,7 @@ namespace Maestro.UI.Main
             var favoriteKeys = _favoriteService.GetAllFavoriteKeys();
             _songListPanel.UpdateFavoriteStates(favoriteKeys);
 
-            if (_filterBar.SelectedSource == "Favorites")
+            if (_filterBar.SelectedSource == "收藏")
                 RefreshSongList();
         }
 
