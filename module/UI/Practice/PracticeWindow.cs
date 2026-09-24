@@ -174,7 +174,7 @@ namespace Maestro.UI.Practice
                 Text = "目前八度音階會自動切換。\n" +
                        "未來版本將允許您自行調整。\n" +
                        "標記為 # 的方塊為升記號(即鋼琴的黑鍵)。\n" +
-                       "請像遊戲中一樣進行演奏: Alt + 技能欄位 1-5 (C# D# F# G# A#).",
+                       "請像遊戲中一樣進行演奏: Alt + 技能欄位 1-5 (C# D# F# G# A#)。",
                 Location = new Point(0, noteTop),
                 Size = new Point(Layout.ContentWidth, noteHeight),
                 Font = GameService.Content.DefaultFont14,

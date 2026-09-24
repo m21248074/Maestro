@@ -1,5 +1,25 @@
 # Changelog
 
+## v7.0.2
+
+### Added
+
+- Added a compact in-game Support window with direct access to Ko-fi and a
+  one-click copy action for the Guild Wars 2 account name.
+
+### Fixed
+
+- Removed a mislabeled duplicate of Radioactive from the built-in song library.
+
+## v7.0.1
+
+### Fixed
+
+- Newly approved community songs now show up in the Community Songs window. The
+  static host was serving a stale copy of the community list to the module, so
+  recently added songs could stay invisible for days no matter how often you
+  refreshed. Maestro now forces a fresh fetch of the list every time.
+
 ## v7.0.0 - Practice Mode
 
 The headline feature of this release: a Guitar Hero-style practice window for any

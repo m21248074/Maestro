@@ -55,11 +55,7 @@ namespace Maestro.UI.Main
                 IsTextInputFocused = e.Value;
             };
 
-#if DEBUG
-            var sourceItems = new[] { "All", "Favorites", "Bundled", "Created", "Imported", "Community", "Submittals" };
-#else
             var sourceItems = new[] { "全部", "收藏", "內建", "自建", "已匯入", "社群" };
-#endif
             _filterButton = new GenericFilterButton(
                 new FilterSection { Items = sourceItems, DefaultValue = "全部" },
                 new FilterSection { Items = BuildInstrumentFilterItems(), DefaultValue = "全部" },
